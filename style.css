@@ -11,6 +11,7 @@ body {
     font-family: sans-serif;
 }
 
+/* --- Header --- */
 header {
     padding: 25px;
     display: flex;
@@ -29,6 +30,7 @@ header nav ul {
 header nav ul li a {
     color: #000000;
     transition: all 0.3s ease;
+    text-decoration: none;
 }
 
 header nav ul li:not(.btn) a:hover {
@@ -44,7 +46,6 @@ header nav ul li:not(.btn) a:hover {
     background: #4F46C3;
     border-radius: 8px;
     padding: 10px 20px;
-    cursor: pointer;
     transition: all 0.3s ease;
 }
 
@@ -56,34 +57,81 @@ header nav ul li:not(.btn) a:hover {
     color: #ffffff;
 }
 
-a {
-    text-decoration: none;
-}
-
+/* --- Главная часть --- */
 .hero {
     font-size: 1.2rem;
     text-align: center;
     padding: 0 20px;
 }
 
-#input {
-    border: none;            
-    outline: none;           
-    padding: 12px 20px;      
-    border-radius: 20px;     
-    font-size: 1rem;         
-    width: 100%;             
-    max-width: 300px;
-    background: #f0f0f0; 
+/* --- Меню выбора артистов --- */
+.dropdown-wrapper {
+    width: 300px;
+    margin: 20px auto 0;
+    position: relative;
+    font-family: sans-serif;
+    z-index: 100;
+}
+
+.dropdown-btn {
+    background: #fff;
+    padding: 15px 20px;
+    border-radius: 20px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    margin-top: 15px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-#input:focus {
-    background: #ffffff;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+.arrow {
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid #333;
+    border-bottom: 2px solid #333;
+    transform: rotate(45deg);
+    transition: 0.3s;
 }
 
+.dropdown-list {
+    position: absolute;
+    top: 110%;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.dropdown-wrapper:hover .dropdown-list {
+    max-height: 300px;
+    opacity: 1;
+}
+
+.dropdown-wrapper:hover .arrow {
+    transform: rotate(-135deg);
+    margin-top: 5px;
+}
+
+/* Выбор артистов */
+.dropdown-list a {
+    display: block;
+    padding: 12px 20px;
+    text-decoration: none;
+    color: #333;
+    transition: 0.2s;
+}
+
+.dropdown-list a:hover {
+    background: #eeefff;
+    color: #4F46C3;
+}
+
+/* --- Карточка артиста --- */
 .card {
     background: #ffffff;
     border-radius: 30px;
@@ -95,6 +143,7 @@ a {
     max-width: 600px;
     margin: 40px auto;
     width: 90%;
+    animation: fadeInUp 0.6s ease-out forwards;
 }
 
 .photo {
@@ -104,6 +153,7 @@ a {
     border-radius: 50%;
     object-fit: cover;
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    animation: fadeInUp 0.8s ease-out;
 }
 
 .card-info h2 {
@@ -133,6 +183,46 @@ a {
     font-weight: 500;
 }
 
+/* --- Биография --- */
+.biography {
+    background: #ffffff;
+    border-radius: 30px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    max-width: 600px;
+    width: 90%;
+    margin: 0 auto 40px auto;
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out 0.2s forwards;
+}
+
+.biography h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #000;
+}
+
+.biography p {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    font-size: 1rem;
+}
+
+/* Анимации */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Мобильная адаптивность */
 @media (max-width: 768px) {
     header {
         flex-direction: column;
